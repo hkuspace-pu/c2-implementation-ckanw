@@ -13,9 +13,6 @@
         android:theme="@style/Theme.WellE">
 
 
-
-
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
