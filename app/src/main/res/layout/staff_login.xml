@@ -50,7 +50,7 @@
         app:layout_constraintVertical_bias="0.303" />
 
     <EditText
-        android:id="@+id/editTextText6"
+        android:id="@+id/editMobile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -110,7 +110,7 @@
         android:text="OK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText6"
+        app:layout_constraintTop_toBottomOf="@+id/editMobile"
         app:layout_constraintVertical_bias="0.008" />
 
     <android.widget.Button
@@ -126,7 +126,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toEndOf="@+id/btnstaffok"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText6"
+        app:layout_constraintTop_toBottomOf="@+id/editMobile"
         app:layout_constraintVertical_bias="0.016" />
 
     <CheckBox
@@ -138,7 +138,7 @@
         android:text="Forget Password"
         android:textColor="#B4B4B4"
         app:layout_constraintStart_toEndOf="@+id/txtStaffPwd"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
+        app:layout_constraintTop_toBottomOf="@+id/editMobile" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.303" />
 
     <EditText
-        android:id="@+id/editTextText6"
+        android:id="@+id/editMobile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txtCustomerPwd"
-        app:layout_constraintTop_toBottomOf="@+id/edittxtCukstomerEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/editEmail" />
 
     <TextView
         android:id="@+id/txtOTP"
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnback" />
 
     <EditText
-        android:id="@+id/edittxtCukstomerEmail"
+        android:id="@+id/editEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="104dp"
