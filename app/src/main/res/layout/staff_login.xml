@@ -129,6 +129,17 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextText6"
         app:layout_constraintVertical_bias="0.016" />
 
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:text="Forget Password"
+        android:textColor="#B4B4B4"
+        app:layout_constraintStart_toEndOf="@+id/txtStaffPwd"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
