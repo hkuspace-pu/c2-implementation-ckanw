@@ -1,4 +1,4 @@
-package com.example.welle.data;
+package com.example.welle.data.local;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;

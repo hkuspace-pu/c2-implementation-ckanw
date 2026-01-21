@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:animationCache="true"
     android:background="@drawable/bg_welcome"
-    tools:context=".CustomerLoginActivity">
+    tools:context=".ui.customer.CustomerLoginActivity">
 
     <TextView
         android:id="@+id/textVersion3"

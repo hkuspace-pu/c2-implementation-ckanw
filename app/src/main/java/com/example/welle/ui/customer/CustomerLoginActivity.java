@@ -1,4 +1,4 @@
-package com.example.welle;
+package com.example.welle.ui.customer;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.room.Room;
+
+import com.example.welle.CustomerLoginedActivity;
+import com.example.welle.R;
+import com.example.welle.ui.MainActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
