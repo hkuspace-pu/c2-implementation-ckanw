@@ -31,4 +31,14 @@ public class User {
         this.contact = contact;
         this.usertype = usertype;
     }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }
