@@ -1,32 +1,21 @@
 package com.example.welle.api;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    // Replace with your server base URL
-    private static final String BASE_URL = "https://yourserver.com/api/";
+    // ⚠️ 請替換成你的 API Base URL，例如：
+    // "http://10.240.72.69/comp2000/coursework/"
+    private static final String BASE_URL = "http://10.240.72.69/comp2000/coursework/";
+
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {
         if (retrofit == null) {
-            // Create logging interceptor
-            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-            // Build OkHttp client with logging
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .addInterceptor(logging)
-                    .build();
-
-            // Build Retrofit instance
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create()) // 使用 Gson 解析 JSON
                     .build();
         }
         return retrofit;

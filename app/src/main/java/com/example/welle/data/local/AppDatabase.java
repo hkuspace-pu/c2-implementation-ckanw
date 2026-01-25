@@ -3,7 +3,7 @@ package com.example.welle.data.local;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Customer.class}, version = 1)
+@Database(entities = {User.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
-    public abstract CustomerDao customerDao();
+    public abstract UserDao userDao();
 }
