@@ -1,11 +1,14 @@
 package com.example.welle.ui.customer;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +25,9 @@ import com.example.welle.data.local.AppDatabase;
 import com.example.welle.data.local.UserDao;
 import com.example.welle.data.repository.UserRepository;
 import com.example.welle.data.local.User;
+import com.example.welle.data.remote.UserResponse;
+
+import java.util.UUID;
 
 public class CustomerLoginActivity extends AppCompatActivity {
 
@@ -30,6 +36,7 @@ public class CustomerLoginActivity extends AppCompatActivity {
     private EditText editEmail;
 
     private UserRepository userRepository;
+    private UserDao userDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +59,10 @@ public class CustomerLoginActivity extends AppCompatActivity {
         btnCustomerOk = findViewById(R.id.btncustomerok);
         editEmail = findViewById(R.id.editEmail);
 
-        // 初始化 Repository
+        // 初始化 Repository & DB
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         AppDatabase db = AppDatabase.getInstance(getApplicationContext());
-        UserDao userDao = db.userDao();
+        userDao = db.userDao();
         userRepository = new UserRepository(apiService, userDao);
 
         // Back button → return to MainActivity
@@ -64,7 +71,7 @@ public class CustomerLoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // OK button → check login via Repository
+        // OK button → login or register
         btnCustomerOk.setOnClickListener(v -> {
             String email = editEmail.getText().toString().trim();
 
@@ -73,18 +80,82 @@ public class CustomerLoginActivity extends AppCompatActivity {
                 return;
             }
 
+            if (!isNetworkAvailable()) {
+                // 無網絡 → 查本地 DB 或離線註冊
+                new Thread(() -> {
+                    User localUser = userDao.findUserByEmail(email);
+                    runOnUiThread(() -> {
+                        if (localUser != null) {
+                            Toast.makeText(this, "Offline login success: " + localUser.getEmail(), Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(CustomerLoginActivity.this, CustomerLoginedActivity.class));
+                        } else {
+                            // 離線註冊新使用者
+                            User newUser = new User(
+                                    UUID.randomUUID().toString(),
+                                    "offlineUser",
+                                    "",
+                                    "",
+                                    "",
+                                    email,
+                                    "",
+                                    "customer"
+                            );
+                            new Thread(() -> userDao.insertUser(newUser)).start();
+                            Toast.makeText(this, "Offline registered new user: " + newUser.getEmail(), Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(CustomerLoginActivity.this, CustomerLoginedActivity.class));
+                        }
+                    });
+                }).start();
+                return;
+            }
+
+            // 有網絡 → 查 API
             userRepository.getUserByEmail("student_123", email, new UserRepository.RepositoryCallback<User>() {
                 @Override
                 public void onSuccess(User result) {
+                    // 找到使用者 → 存到本地 DB
+                    new Thread(() -> userDao.insertUser(result)).start();
                     Toast.makeText(CustomerLoginActivity.this, "Login success: " + result.getEmail(), Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(CustomerLoginActivity.this, CustomerLoginedActivity.class));
                 }
 
                 @Override
                 public void onFailure(String errorMessage) {
-                    Toast.makeText(CustomerLoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                    // API 沒找到 → 註冊新使用者
+                    UserResponse newUserResponse = new UserResponse();
+                    newUserResponse.setUsername("newUser");
+                    newUserResponse.setPassword("");
+                    newUserResponse.setFirstname("");
+                    newUserResponse.setLastname("");
+                    newUserResponse.setEmail(email);
+                    newUserResponse.setContact("");
+                    newUserResponse.setUsertype("customer");
+
+
+                    userRepository.registerUser("student_123", newUserResponse, new UserRepository.RepositoryCallback<Boolean>() {
+                        @Override
+                        public void onSuccess(Boolean result) {
+                            Toast.makeText(CustomerLoginActivity.this, "Registered new user: " + email, Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(CustomerLoginActivity.this, CustomerLoginedActivity.class));
+                        }
+
+                        @Override
+                        public void onFailure(String errorMessage) {
+                            Toast.makeText(CustomerLoginActivity.this, "Register failed: " + errorMessage, Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             });
         });
+    }
+
+    // 網絡檢查方法
+    private boolean isNetworkAvailable() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm != null) {
+            NetworkCapabilities nc = cm.getNetworkCapabilities(cm.getActiveNetwork());
+            return nc != null && nc.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
+        }
+        return false;
     }
 }
