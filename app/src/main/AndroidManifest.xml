@@ -62,10 +62,10 @@
             android:name=".ui.customer.CustomerConfirmActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerNoticeActivity"
+            android:name=".ui.customer.CustomerNoticeActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerBookEditActivity"
+            android:name=".ui.customer.CustomerBookEditActivity"
             android:exported="false" />
         <activity
             android:name=".CustomerBookCancelActivity"
@@ -74,7 +74,7 @@
             android:name=".CustomerBookCanceledActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerPrefActivity"
+            android:name=".ui.customer.CustomerPrefActivity"
             android:exported="false" />
 
 

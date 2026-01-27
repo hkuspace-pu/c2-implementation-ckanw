@@ -18,6 +18,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.welle.ui.MainActivity;
 import com.example.welle.ui.customer.CustomerBookActivity;
 import com.example.welle.ui.customer.CustomerMainActivity;
+import com.example.welle.ui.customer.CustomerPrefActivity;
+import com.example.welle.ui.customer.CustomerNoticeActivity;
 
 public class CustomerSpecialActivity extends AppCompatActivity {
 

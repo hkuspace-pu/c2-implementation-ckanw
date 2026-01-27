@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:animationCache="true"
     android:background="@drawable/jpeg__5_"
-    tools:context=".CustomerNoticeActivity">
+    tools:context=".ui.customer.CustomerNoticeActivity">
 
 
     <Button
@@ -70,22 +70,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageBack"
         app:layout_constraintVertical_bias="0.099" />
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="414dp"
-        android:layout_height="576dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="239dp"
-        android:layout_marginBottom="559dp"
-        android:alpha="0"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="@+id/CustomerNoticeRecyclerView"
-        app:layout_constraintEnd_toEndOf="@+id/CustomerNoticeRecyclerView"
-        app:layout_constraintHorizontal_bias="0.164"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/CustomerNoticeRecyclerView"
-        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

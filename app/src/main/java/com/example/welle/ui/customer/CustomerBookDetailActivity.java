@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.EditText;
 import android.widget.CheckBox;
 
 import androidx.activity.EdgeToEdge;
@@ -17,8 +16,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.welle.CustomerMenuActivity;
-import com.example.welle.CustomerNoticeActivity;
-import com.example.welle.CustomerPrefActivity;
 import com.example.welle.R;
 import com.example.welle.ui.MainActivity;
 import com.example.welle.data.local.AppDatabase;
@@ -43,12 +40,12 @@ public class CustomerBookDetailActivity extends AppCompatActivity {
         String date = getIntent().getStringExtra("selectedDate");
         String time = getIntent().getStringExtra("selectedTime");
 
-        TextView txtDate = findViewById(R.id.txtdate);
-        TextView txtTime = findViewById(R.id.txttime);
+        TextView txtDate = findViewById(R.id.editdate);
+        TextView txtTime = findViewById(R.id.edittime);
         TextView txtName = findViewById(R.id.editCustomerName);
         TextView txtEmail = findViewById(R.id.editCustomerEmail);
         TextView txtTel = findViewById(R.id.editCustomerContact);
-        TextView editPerson = findViewById(R.id.editPerson);
+        TextView editPerson = findViewById(R.id.editnoOfPerson);
         TextView editRemark = findViewById(R.id.editRemark);
         CheckBox checkBirthday = findViewById(R.id.checkBirthday);
         CheckBox checkFriends = findViewById(R.id.checkFriends);
@@ -58,7 +55,7 @@ public class CustomerBookDetailActivity extends AppCompatActivity {
 
 
         Button btnBack = findViewById(R.id.btnback);
-        Button btnConfirm = findViewById(R.id.btnclnconfirm);
+        Button btnConfirm = findViewById(R.id.btnUpdate);
         Button btnNotice = findViewById(R.id.btncustomernotice);
         Button popupButton = findViewById(R.id.btncustomerfullmenu);
 

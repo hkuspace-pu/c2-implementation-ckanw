@@ -35,7 +35,7 @@
 
 
     <TextView
-        android:id="@+id/txtdate"
+        android:id="@+id/editdate"
         android:layout_width="179dp"
         android:layout_height="44dp"
         android:layout_marginStart="12dp"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageBack" />
 
     <TextView
-        android:id="@+id/txttime"
+        android:id="@+id/edittime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -55,7 +55,7 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.416"
-        app:layout_constraintStart_toEndOf="@+id/txtdate"
+        app:layout_constraintStart_toEndOf="@+id/editdate"
         app:layout_constraintTop_toBottomOf="@+id/imageBack" />
 
     <ImageView
@@ -65,7 +65,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtdate"
+        app:layout_constraintTop_toBottomOf="@+id/editdate"
         app:srcCompat="@drawable/floorplan" />
 
     <Button

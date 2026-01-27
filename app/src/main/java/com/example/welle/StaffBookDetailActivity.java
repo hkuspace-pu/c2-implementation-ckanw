@@ -34,7 +34,7 @@ public class StaffBookDetailActivity extends AppCompatActivity {
         Button btn = findViewById(R.id.btnstaffconfirmbk);
         Button btn2 = findViewById(R.id.btnback);
         Button btn3 = findViewById(R.id.btnstaffnotice);
-        Button btn4 = findViewById(R.id.btncancel);
+        Button btn4 = findViewById(R.id.btnDelete);
         Button popupButton = findViewById(R.id.btnstaffullmenu);
 
         btn.setOnClickListener(new View.OnClickListener() {
