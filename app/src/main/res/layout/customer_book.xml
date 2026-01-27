@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:animationCache="true"
     android:background="@drawable/jpeg__5_"
-    tools:context=".CustomerBookActivity">
+    tools:context=".ui.customer.CustomerBookActivity">
 
 
     <Button
@@ -60,77 +60,28 @@
         app:layout_constraintTop_toBottomOf="@+id/imageBack"
         app:layout_constraintVertical_bias="0.836" />
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        android:layout_width="409dp"
+    <HorizontalScrollView
+        android:id="@+id/timeScrollView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:scrollbars="none"
+        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        tools:layout_editor_absoluteX="1dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="83dp"
-        android:layout_height="74dp"
-        android:lineSpacingExtra="20sp"
-        android:text="17:00 - 18:00"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar"
-        app:layout_constraintStart_toStartOf="@+id/bottomAppBar"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
-        app:layout_constraintVertical_bias="0.0" />
+        <LinearLayout
+            android:id="@+id/timeContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:background="@drawable/white_border_bg"/>
+    </HorizontalScrollView>
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="83dp"
-        android:layout_height="74dp"
-        android:lineSpacingExtra="20sp"
-        android:text="19:00 - 20:00"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
-        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="83dp"
-        android:layout_height="74dp"
 
-        android:layout_marginStart="5dp"
-        android:lineSpacingExtra="20sp"
-        android:text="18:00 - 19:00"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
-        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="83dp"
-        android:layout_height="74dp"
-        android:lineSpacingExtra="20sp"
-        android:text="21:00 - 22:00"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar" />
-
-    <TextView
-        android:id="@+id/textView42"
-        android:layout_width="83dp"
-        android:layout_height="74dp"
-        android:lineSpacingExtra="20sp"
-        android:text="22:00 - 23:00"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar" />
 
 
     <Button
@@ -174,19 +125,6 @@
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btntime"
-        android:layout_width="428dp"
-        android:layout_height="61dp"
-        android:alpha="0"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar"
-        app:layout_constraintEnd_toEndOf="@+id/textView42"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/bottomAppBar"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
-        app:layout_constraintVertical_bias="0.684" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,39 +7,42 @@
     android:layout_height="match_parent"
     android:animationCache="true"
     android:background="@drawable/bg_welcome"
-    tools:context=".CustomerLoginedActivity">
+    tools:context=".ui.customer.CustomerLoginedActivity">
 
+    <!-- 提示文字：Resend OTP -->
     <TextView
         android:id="@+id/textView57"
-        android:layout_width="320dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Please wait 10 seconds to resend OTP."
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btncustomerresend" />
 
+
+    <!-- 版本號 -->
     <TextView
         android:id="@+id/textVersion3"
-        android:layout_width="52dp"
-        android:layout_height="23dp"
-        android:layout_marginEnd="19dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="V 1.0"
         android:textAlignment="center"
-        android:textColor="#ED878585"
+        android:textColor="#878585"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.977" />
+        app:layout_constraintVertical_bias="0.95" />
 
+
+    <!-- 返回圖示 -->
     <ImageView
         android:id="@+id/imageBack"
         android:layout_width="79dp"
         android:layout_height="89dp"
         android:layout_marginTop="36dp"
-
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,12 +57,13 @@
         android:layout_marginTop="50dp"
         android:alpha="0"
         android:text="Button"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.147"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.303" />
+
+
 
     <TextView
         android:id="@+id/txtOTP"

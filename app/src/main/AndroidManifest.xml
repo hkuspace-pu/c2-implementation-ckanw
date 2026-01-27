@@ -34,11 +34,11 @@
             android:exported="false" />
 
         <activity
-            android:name=".CustomerLoginedActivity"
+            android:name=".ui.customer.CustomerLoginedActivity"
             android:exported="false" />
 
         <activity
-            android:name=".CustomerMainActivity"
+            android:name=".ui.customer.CustomerMainActivity"
             android:exported="false" />
 
         <activity
@@ -50,16 +50,16 @@
 
 
         <activity
-            android:name=".CustomerBookActivity"
+            android:name=".ui.customer.CustomerBookActivity"
             android:exported="false" />
 
 
         <activity
-            android:name=".CustomerBookDetailActivity"
+            android:name=".ui.customer.CustomerBookDetailActivity"
             android:exported="false" />
 
         <activity
-            android:name=".CustomerConfirmActivity"
+            android:name=".ui.customer.CustomerConfirmActivity"
             android:exported="false" />
         <activity
             android:name=".CustomerNoticeActivity"

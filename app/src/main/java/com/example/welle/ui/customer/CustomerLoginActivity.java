@@ -16,7 +16,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.welle.CustomerLoginedActivity;
 import com.example.welle.R;
 import com.example.welle.ui.MainActivity;
 import com.example.welle.api.ApiClient;
@@ -59,7 +58,7 @@ public class CustomerLoginActivity extends AppCompatActivity {
         btnCustomerOk = findViewById(R.id.btncustomerok);
         editEmail = findViewById(R.id.editEmail);
 
-        // 初始化 Repository & DB
+        // Initialize Repository & DB
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         AppDatabase db = AppDatabase.getInstance(getApplicationContext());
         userDao = db.userDao();
@@ -76,20 +75,21 @@ public class CustomerLoginActivity extends AppCompatActivity {
             String email = editEmail.getText().toString().trim();
 
             if (email.isEmpty()) {
-                Toast.makeText(this, "Please enter Email", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (!isNetworkAvailable()) {
-                // 無網絡 → 查本地 DB 或離線註冊
+                // Offline → check local DB or register new user
                 new Thread(() -> {
                     User localUser = userDao.findUserByEmail(email);
                     runOnUiThread(() -> {
                         if (localUser != null) {
                             Toast.makeText(this, "Offline login success: " + localUser.getEmail(), Toast.LENGTH_SHORT).show();
+                            saveLoginEmail(email);
                             startActivity(new Intent(CustomerLoginActivity.this, CustomerLoginedActivity.class));
                         } else {
-                            // 離線註冊新使用者
+                            // Offline register new user
                             User newUser = new User(
                                     UUID.randomUUID().toString(),
                                     "offlineUser",
@@ -102,6 +102,7 @@ public class CustomerLoginActivity extends AppCompatActivity {
                             );
                             new Thread(() -> userDao.insertUser(newUser)).start();
                             Toast.makeText(this, "Offline registered new user: " + newUser.getEmail(), Toast.LENGTH_SHORT).show();
+                            saveLoginEmail(email);
                             startActivity(new Intent(CustomerLoginActivity.this, CustomerLoginedActivity.class));
                         }
                     });
@@ -109,19 +110,20 @@ public class CustomerLoginActivity extends AppCompatActivity {
                 return;
             }
 
-            // 有網絡 → 查 API
+            // Online → check API
             userRepository.getUserByEmail("student_123", email, new UserRepository.RepositoryCallback<User>() {
                 @Override
                 public void onSuccess(User result) {
-                    // 找到使用者 → 存到本地 DB
+                    // Found user → save to local DB
                     new Thread(() -> userDao.insertUser(result)).start();
                     Toast.makeText(CustomerLoginActivity.this, "Login success: " + result.getEmail(), Toast.LENGTH_SHORT).show();
+                    saveLoginEmail(email);
                     startActivity(new Intent(CustomerLoginActivity.this, CustomerLoginedActivity.class));
                 }
 
                 @Override
                 public void onFailure(String errorMessage) {
-                    // API 沒找到 → 註冊新使用者
+                    // API not found → register new user
                     UserResponse newUserResponse = new UserResponse();
                     newUserResponse.setUsername("newUser");
                     newUserResponse.setPassword("");
@@ -131,11 +133,11 @@ public class CustomerLoginActivity extends AppCompatActivity {
                     newUserResponse.setContact("");
                     newUserResponse.setUsertype("customer");
 
-
                     userRepository.registerUser("student_123", newUserResponse, new UserRepository.RepositoryCallback<Boolean>() {
                         @Override
                         public void onSuccess(Boolean result) {
                             Toast.makeText(CustomerLoginActivity.this, "Registered new user: " + email, Toast.LENGTH_SHORT).show();
+                            saveLoginEmail(email);
                             startActivity(new Intent(CustomerLoginActivity.this, CustomerLoginedActivity.class));
                         }
 
@@ -149,7 +151,15 @@ public class CustomerLoginActivity extends AppCompatActivity {
         });
     }
 
-    // 網絡檢查方法
+    // Save login email to SharedPreferences
+    private void saveLoginEmail(String email) {
+        getSharedPreferences("login", MODE_PRIVATE)
+                .edit()
+                .putString("email", email)
+                .apply();
+    }
+
+    // Network check
     private boolean isNetworkAvailable() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm != null) {

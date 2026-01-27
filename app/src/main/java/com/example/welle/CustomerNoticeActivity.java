@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.welle.ui.MainActivity;
+import com.example.welle.ui.customer.CustomerBookActivity;
+import com.example.welle.ui.customer.CustomerMainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +56,6 @@ public class CustomerNoticeActivity extends AppCompatActivity {
 
 
         Button btn = findViewById(R.id.btnback);
-        Button btn2 = findViewById(R.id.button8);
 
         Button popupButton = findViewById(R.id.btncustomerfullmenu);
 
@@ -73,15 +74,7 @@ public class CustomerNoticeActivity extends AppCompatActivity {
             }
         });
 
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Explicit Intent
-                //goToSecondActivity();
-                Intent intent = new Intent(CustomerNoticeActivity.this, CustomerBookEditActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         popupButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -16,6 +16,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.welle.ui.MainActivity;
+import com.example.welle.ui.customer.CustomerBookActivity;
+import com.example.welle.ui.customer.CustomerConfirmActivity;
+import com.example.welle.ui.customer.CustomerMainActivity;
 
 public class CustomerBookEditActivity extends AppCompatActivity {
 

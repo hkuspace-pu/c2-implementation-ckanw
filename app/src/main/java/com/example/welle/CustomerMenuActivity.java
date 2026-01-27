@@ -16,6 +16,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.welle.ui.MainActivity;
+import com.example.welle.ui.customer.CustomerBookActivity;
+import com.example.welle.ui.customer.CustomerMainActivity;
 
 public class CustomerMenuActivity extends AppCompatActivity {
 
@@ -40,7 +42,7 @@ public class CustomerMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Explicit Intent
                 //goToSecondActivity();
-                Intent intent = new Intent(CustomerMenuActivity.this,CustomerMainActivity.class);
+                Intent intent = new Intent(CustomerMenuActivity.this, CustomerMainActivity.class);
                 startActivity(intent);
             }
         });

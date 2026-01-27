@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageBack" />
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/editPerson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -59,10 +59,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.796"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+        app:layout_constraintTop_toBottomOf="@+id/editCustomerContact" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/editCustomerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -75,7 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txttime" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/editCustomerContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
@@ -85,7 +85,7 @@
         android:text="12345678"
         android:textColor="#A5A5A5"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/editCustomerName" />
 
     <TextView
         android:id="@+id/textView8"
@@ -288,7 +288,7 @@
         android:inputType="text"
         android:textColor="#A5A5A5A5"
         app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+        app:layout_constraintTop_toBottomOf="@+id/editPerson" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

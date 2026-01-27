@@ -84,7 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView48" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/editCustomerContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
@@ -93,10 +93,10 @@
         android:text="12345678"
         android:textColor="#A5A5A5"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintTop_toBottomOf="@+id/editCustomerEmail" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/editCustomerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -145,7 +145,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/editCustomerEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -155,7 +155,7 @@
         android:text="XXXX@XXX.com"
         android:textColor="#A5A5A5"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/editCustomerName" />
 
     <android.widget.Button
         android:id="@+id/btnclnconfirm"
@@ -269,7 +269,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtdate" />
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/editPerson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -280,7 +280,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.786"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+        app:layout_constraintTop_toBottomOf="@+id/editCustomerContact" />
 
 
     <ImageView
@@ -328,6 +328,6 @@
         android:inputType="text"
         android:textColor="#A5A5A5"
         app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+        app:layout_constraintTop_toBottomOf="@+id/editPerson" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
