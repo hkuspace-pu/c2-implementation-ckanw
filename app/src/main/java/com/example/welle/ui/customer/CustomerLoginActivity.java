@@ -43,7 +43,6 @@ public class CustomerLoginActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.customer_login);
 
-        // Handle system bars safely
         View rootView = findViewById(R.id.main);
         if (rootView != null) {
             ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
@@ -53,26 +52,23 @@ public class CustomerLoginActivity extends AppCompatActivity {
             });
         }
 
-        // Initialize UI components
         btnBack = findViewById(R.id.btnback);
         btnCustomerOk = findViewById(R.id.btncustomerok);
         editEmail = findViewById(R.id.editEmail);
 
-        // Initialize Repository & DB
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         AppDatabase db = AppDatabase.getInstance(getApplicationContext());
         userDao = db.userDao();
         userRepository = new UserRepository(apiService, userDao);
 
-        // Back button → return to MainActivity
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(CustomerLoginActivity.this, MainActivity.class);
             startActivity(intent);
         });
 
-        // OK button → login or register
         btnCustomerOk.setOnClickListener(v -> {
-            String email = editEmail.getText().toString().trim();
+            // ✅ 統一 email → trim + toLowerCase
+            String email = editEmail.getText().toString().trim().toLowerCase();
 
             if (email.isEmpty()) {
                 Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show();
@@ -114,7 +110,6 @@ public class CustomerLoginActivity extends AppCompatActivity {
             userRepository.getUserByEmail("student_123", email, new UserRepository.RepositoryCallback<User>() {
                 @Override
                 public void onSuccess(User result) {
-                    // Found user → save to local DB
                     new Thread(() -> userDao.insertUser(result)).start();
                     Toast.makeText(CustomerLoginActivity.this, "Login success: " + result.getEmail(), Toast.LENGTH_SHORT).show();
                     saveLoginEmail(email);
@@ -123,7 +118,6 @@ public class CustomerLoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(String errorMessage) {
-                    // API not found → register new user
                     UserResponse newUserResponse = new UserResponse();
                     newUserResponse.setUsername("newUser");
                     newUserResponse.setPassword("");
@@ -151,7 +145,6 @@ public class CustomerLoginActivity extends AppCompatActivity {
         });
     }
 
-    // Save login email to SharedPreferences
     private void saveLoginEmail(String email) {
         getSharedPreferences("login", MODE_PRIVATE)
                 .edit()
@@ -159,7 +152,6 @@ public class CustomerLoginActivity extends AppCompatActivity {
                 .apply();
     }
 
-    // Network check
     private boolean isNetworkAvailable() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm != null) {
