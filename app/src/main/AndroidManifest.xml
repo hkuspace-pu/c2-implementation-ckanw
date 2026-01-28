@@ -79,16 +79,16 @@
 
 
         <activity
-            android:name=".StaffLoginActivity"
+            android:name=".ui.staff.StaffLoginActivity"
             android:exported="false" />
 
         <activity
-            android:name=".StaffMainActivity"
+            android:name=".ui.staff.StaffMainActivity"
             android:exported="false" />
 
 
         <activity
-            android:name=".StaffBookActivity"
+            android:name=".ui.staff.StaffBookActivity"
             android:exported="false" />
 
         <activity

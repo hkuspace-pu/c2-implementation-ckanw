@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:animationCache="true"
     android:background="@drawable/jpeg__5_"
-    tools:context=".StaffBookActivity">
+    tools:context=".ui.staff.StaffBookActivity">
 
 
     <Button
@@ -63,18 +63,6 @@
         app:layout_constraintTop_toBottomOf="@+id/imageBack" />
 
     <Button
-        android:id="@+id/btnstaffbkdate"
-        android:layout_width="345dp"
-        android:layout_height="251dp"
-        android:layout_marginTop="52dp"
-        android:alpha="0"
-        android:text="btnstaffbkdate"
-        app:layout_constraintEnd_toEndOf="@+id/view5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/calendarView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageBack" />
-
-    <Button
         android:id="@+id/btnstaffnotice"
         android:layout_width="83dp"
         android:layout_height="59dp"
@@ -117,15 +105,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="361dp"
-        android:layout_height="237dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerBooking"
+        android:layout_width="331dp"
+        android:layout_height="189dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view5"
-        app:srcCompat="@drawable/screenshot" />
+        app:layout_constraintTop_toBottomOf="@id/calendarView2"
+        app:layout_constraintVertical_bias="0.307" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

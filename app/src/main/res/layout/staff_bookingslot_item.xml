@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="#111">
+
+    <!-- 時間段 -->
+    <TextView
+        android:id="@+id/textTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="11:00 - 12:00"
+        android:textColor="#FFD700"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingBottom="4dp"/>
+
+    <!-- 空位 (E) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp">
+
+        <TextView
+            android:id="@+id/textEmptyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E (Empty):"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/textEmpty2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2人檯: 10"
+            android:textColor="#FFD700"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:id="@+id/textEmpty4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4人檯: 6"
+            android:textColor="#FFD700"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+    <!-- 已預約 (B) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textBookingTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="B (Booking):"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/textBooking2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2人檯: 0"
+            android:textColor="#FFD700"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:id="@+id/textBooking4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4人檯: 0"
+            android:textColor="#FFD700"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+</LinearLayout>

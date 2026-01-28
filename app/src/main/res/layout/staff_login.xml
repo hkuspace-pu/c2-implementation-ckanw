@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:animationCache="true"
     android:background="@drawable/jpeg__5_"
-    tools:context=".StaffLoginActivity">
+    tools:context=".ui.staff.StaffLoginActivity">
 
     <TextView
         android:id="@+id/textVersion2"
@@ -50,17 +50,17 @@
         app:layout_constraintVertical_bias="0.303" />
 
     <EditText
-        android:id="@+id/editMobile"
+        android:id="@+id/editTextStaffPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="text|textPassword"
         android:textColor="#A5A5A5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.323"
         app:layout_constraintStart_toEndOf="@+id/txtStaffPwd"
-        app:layout_constraintTop_toBottomOf="@+id/edittxtStaffID" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextStaffemail" />
 
     <TextView
         android:id="@+id/txtStaffPwd"
@@ -71,29 +71,28 @@
         android:text="Password:"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtStaffID" />
+        app:layout_constraintTop_toBottomOf="@+id/textStaffEmail" />
 
     <EditText
-        android:id="@+id/edittxtStaffID"
+        android:id="@+id/editTextStaffemail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="112dp"
         android:ems="10"
         android:inputType="text"
-        android:password="true"
         android:textColor="#A5A5A5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.44"
-        app:layout_constraintStart_toEndOf="@+id/txtStaffID"
+        app:layout_constraintStart_toEndOf="@+id/textStaffEmail"
         app:layout_constraintTop_toBottomOf="@+id/imageBack" />
 
     <TextView
-        android:id="@+id/txtStaffID"
+        android:id="@+id/textStaffEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginTop="112dp"
-        android:text="Staff ID:"
+        android:text="Email:"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageBack" />
@@ -110,7 +109,7 @@
         android:text="OK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editMobile"
+        app:layout_constraintTop_toBottomOf="@+id/editTextStaffPassword"
         app:layout_constraintVertical_bias="0.008" />
 
     <android.widget.Button
@@ -126,7 +125,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toEndOf="@+id/btnstaffok"
-        app:layout_constraintTop_toBottomOf="@+id/editMobile"
+        app:layout_constraintTop_toBottomOf="@+id/editTextStaffPassword"
         app:layout_constraintVertical_bias="0.016" />
 
     <CheckBox
@@ -138,7 +137,18 @@
         android:text="Forget Password"
         android:textColor="#B4B4B4"
         app:layout_constraintStart_toEndOf="@+id/txtStaffPwd"
-        app:layout_constraintTop_toBottomOf="@+id/editMobile" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextStaffPassword" />
+
+    <TextView
+        android:id="@+id/textStaffSignin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="124dp"
+        android:text="Staff Sign In"
+        android:textSize="40sp"
+        app:layout_constraintStart_toEndOf="@+id/imageBack"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

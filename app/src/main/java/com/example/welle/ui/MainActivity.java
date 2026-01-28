@@ -12,7 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.welle.R;
-import com.example.welle.StaffLoginActivity;
+import com.example.welle.ui.staff.StaffLoginActivity;
 import com.example.welle.ui.customer.CustomerLoginActivity;
 
 public class MainActivity extends AppCompatActivity {

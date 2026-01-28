@@ -8,49 +8,34 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.welle.R;
 import com.example.welle.ui.MainActivity;
 import com.example.welle.api.ApiClient;
 import com.example.welle.api.ApiService;
 import com.example.welle.data.local.AppDatabase;
+import com.example.welle.data.local.User;
 import com.example.welle.data.local.UserDao;
 import com.example.welle.data.repository.UserRepository;
-import com.example.welle.data.local.User;
 import com.example.welle.data.remote.UserResponse;
 
 import java.util.UUID;
 
 public class CustomerLoginActivity extends AppCompatActivity {
 
-    private Button btnBack;
-    private Button btnCustomerOk;
+    private Button btnBack, btnCustomerOk;
     private EditText editEmail;
-
-    private UserRepository userRepository;
     private UserDao userDao;
+    private UserRepository userRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.customer_login);
-
-        View rootView = findViewById(R.id.main);
-        if (rootView != null) {
-            ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
-                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                return insets;
-            });
-        }
 
         btnBack = findViewById(R.id.btnback);
         btnCustomerOk = findViewById(R.id.btncustomerok);
@@ -61,13 +46,9 @@ public class CustomerLoginActivity extends AppCompatActivity {
         userDao = db.userDao();
         userRepository = new UserRepository(apiService, userDao);
 
-        btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(CustomerLoginActivity.this, MainActivity.class);
-            startActivity(intent);
-        });
+        btnBack.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
 
         btnCustomerOk.setOnClickListener(v -> {
-            // ✅ 統一 email → trim + toLowerCase
             String email = editEmail.getText().toString().trim().toLowerCase();
 
             if (email.isEmpty()) {
@@ -76,16 +57,16 @@ public class CustomerLoginActivity extends AppCompatActivity {
             }
 
             if (!isNetworkAvailable()) {
-                // Offline → check local DB or register new user
+                // 🔹 Offline
                 new Thread(() -> {
-                    User localUser = userDao.findUserByEmail(email);
+                    User localUser = userDao.findUserByEmailAndType(email, "customer");
                     runOnUiThread(() -> {
                         if (localUser != null) {
                             Toast.makeText(this, "Offline login success: " + localUser.getEmail(), Toast.LENGTH_SHORT).show();
                             saveLoginEmail(email);
-                            startActivity(new Intent(CustomerLoginActivity.this, CustomerLoginedActivity.class));
+                            startActivity(new Intent(this, CustomerLoginedActivity.class));
                         } else {
-                            // Offline register new user
+                            // 離線新增 customer
                             User newUser = new User(
                                     UUID.randomUUID().toString(),
                                     "offlineUser",
@@ -97,51 +78,72 @@ public class CustomerLoginActivity extends AppCompatActivity {
                                     "customer"
                             );
                             new Thread(() -> userDao.insertUser(newUser)).start();
-                            Toast.makeText(this, "Offline registered new user: " + newUser.getEmail(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Offline registered new customer: " + email, Toast.LENGTH_SHORT).show();
                             saveLoginEmail(email);
-                            startActivity(new Intent(CustomerLoginActivity.this, CustomerLoginedActivity.class));
+                            startActivity(new Intent(this, CustomerLoginedActivity.class));
                         }
                     });
                 }).start();
-                return;
+            } else {
+                // 🔹 Online
+                userRepository.getUserByEmail("student_123", email, new UserRepository.RepositoryCallback<User>() {
+                    @Override
+                    public void onSuccess(User result) {
+                        new Thread(() -> {
+                            User existingUser = userDao.findUserByEmailAndType(email, "customer");
+                            if (existingUser == null) {
+                                userDao.insertUser(result);
+                            } else {
+                                existingUser.firstname = result.firstname;
+                                existingUser.lastname = result.lastname;
+                                existingUser.contact = result.contact;
+                                userDao.updateUser(existingUser);
+                            }
+                        }).start();
+
+                        Toast.makeText(CustomerLoginActivity.this, "Login success: " + result.getEmail(), Toast.LENGTH_SHORT).show();
+                        saveLoginEmail(email);
+                        startActivity(new Intent(CustomerLoginActivity.this, CustomerLoginedActivity.class));
+                    }
+
+                    @Override
+                    public void onFailure(String errorMessage) {
+                        UserResponse newUserResponse = new UserResponse();
+                        newUserResponse.setUsername("newUser");
+                        newUserResponse.setPassword("");
+                        newUserResponse.setFirstname("");
+                        newUserResponse.setLastname("");
+                        newUserResponse.setEmail(email);
+                        newUserResponse.setContact("");
+                        newUserResponse.setUsertype("customer");
+
+                        userRepository.registerUser("student_123", newUserResponse, new UserRepository.RepositoryCallback<Boolean>() {
+                            @Override
+                            public void onSuccess(Boolean result) {
+                                User newUser = new User(
+                                        UUID.randomUUID().toString(),
+                                        "offlineUser",
+                                        "",
+                                        "",
+                                        "",
+                                        email,
+                                        "",
+                                        "customer"
+                                );
+                                new Thread(() -> userDao.insertUser(newUser)).start();
+                                Toast.makeText(CustomerLoginActivity.this, "Registered new customer: " + email, Toast.LENGTH_SHORT).show();
+                                saveLoginEmail(email);
+                                startActivity(new Intent(CustomerLoginActivity.this, CustomerLoginedActivity.class));
+                            }
+
+                            @Override
+                            public void onFailure(String errorMessage) {
+                                Toast.makeText(CustomerLoginActivity.this, "Register failed: " + errorMessage, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
             }
-
-            // Online → check API
-            userRepository.getUserByEmail("student_123", email, new UserRepository.RepositoryCallback<User>() {
-                @Override
-                public void onSuccess(User result) {
-                    new Thread(() -> userDao.insertUser(result)).start();
-                    Toast.makeText(CustomerLoginActivity.this, "Login success: " + result.getEmail(), Toast.LENGTH_SHORT).show();
-                    saveLoginEmail(email);
-                    startActivity(new Intent(CustomerLoginActivity.this, CustomerLoginedActivity.class));
-                }
-
-                @Override
-                public void onFailure(String errorMessage) {
-                    UserResponse newUserResponse = new UserResponse();
-                    newUserResponse.setUsername("newUser");
-                    newUserResponse.setPassword("");
-                    newUserResponse.setFirstname("");
-                    newUserResponse.setLastname("");
-                    newUserResponse.setEmail(email);
-                    newUserResponse.setContact("");
-                    newUserResponse.setUsertype("customer");
-
-                    userRepository.registerUser("student_123", newUserResponse, new UserRepository.RepositoryCallback<Boolean>() {
-                        @Override
-                        public void onSuccess(Boolean result) {
-                            Toast.makeText(CustomerLoginActivity.this, "Registered new user: " + email, Toast.LENGTH_SHORT).show();
-                            saveLoginEmail(email);
-                            startActivity(new Intent(CustomerLoginActivity.this, CustomerLoginedActivity.class));
-                        }
-
-                        @Override
-                        public void onFailure(String errorMessage) {
-                            Toast.makeText(CustomerLoginActivity.this, "Register failed: " + errorMessage, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            });
         });
     }
 

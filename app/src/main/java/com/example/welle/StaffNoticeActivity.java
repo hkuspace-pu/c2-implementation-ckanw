@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.welle.ui.MainActivity;
+import com.example.welle.ui.staff.StaffBookActivity;
+import com.example.welle.ui.staff.StaffMainActivity;
 
 import java.util.ArrayList;
 import java.util.List;

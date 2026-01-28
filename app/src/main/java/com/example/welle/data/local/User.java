@@ -2,9 +2,12 @@ package com.example.welle.data.local;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "users")
+@Entity(
+        tableName = "users")
+
 public class User {
 
     @PrimaryKey
@@ -32,7 +35,6 @@ public class User {
         this.usertype = usertype;
     }
 
-
     public String getEmail() {
         return email;
     }
@@ -40,5 +42,4 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }

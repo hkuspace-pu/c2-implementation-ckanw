@@ -19,6 +19,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.welle.ui.MainActivity;
+import com.example.welle.ui.staff.StaffBookActivity;
+import com.example.welle.ui.staff.StaffMainActivity;
 
 
 public class StaffMenuAddActivity extends AppCompatActivity {
