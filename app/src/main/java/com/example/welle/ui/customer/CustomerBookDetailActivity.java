@@ -20,6 +20,10 @@ import com.example.welle.R;
 import com.example.welle.ui.MainActivity;
 import com.example.welle.data.local.AppDatabase;
 import com.example.welle.data.local.User;
+import com.example.welle.data.local.Booking;
+import com.example.welle.utils.BookingUtils;
+
+import java.util.List;
 
 public class CustomerBookDetailActivity extends AppCompatActivity {
 
@@ -35,8 +39,7 @@ public class CustomerBookDetailActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Receive data from CustomerBookDetailActivity
-
+        // 接收日期和時間
         String date = getIntent().getStringExtra("selectedDate");
         String time = getIntent().getStringExtra("selectedTime");
 
@@ -51,8 +54,6 @@ public class CustomerBookDetailActivity extends AppCompatActivity {
         CheckBox checkFriends = findViewById(R.id.checkFriends);
         CheckBox checkBusiness = findViewById(R.id.checkBusiness);
         CheckBox checkOther = findViewById(R.id.checkOther);
-
-
 
         Button btnBack = findViewById(R.id.btnback);
         Button btnConfirm = findViewById(R.id.btnUpdate);
@@ -77,27 +78,21 @@ public class CustomerBookDetailActivity extends AppCompatActivity {
             }
         }
 
-
-
-
         // Back → 返回 CustomerBookActivity
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(CustomerBookDetailActivity.this, CustomerBookActivity.class);
             startActivity(intent);
         });
 
-        // Confirm → 跳到 CustomerConfirmActivity
+        // Confirm → 檢查是否有位子，再跳到 CustomerConfirmActivity
         btnConfirm.setOnClickListener(v -> {
-            String remark = editRemark.getText().toString().trim();
-            int noOfPerson = 0;
+            int noOfPerson;
             try {
                 noOfPerson = Integer.parseInt(editPerson.getText().toString().trim());
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "Please enter a valid number of persons", Toast.LENGTH_SHORT).show();
-                return; // 不跳頁，避免錯誤
+                return;
             }
-
-
 
             StringBuilder eventType = new StringBuilder();
             if (checkBirthday.isChecked()) eventType.append("Birthday ");
@@ -105,18 +100,27 @@ public class CustomerBookDetailActivity extends AppCompatActivity {
             if (checkBusiness.isChecked()) eventType.append("Business dinner ");
             if (checkOther.isChecked()) eventType.append("Other ");
 
-            Intent intent = new Intent(CustomerBookDetailActivity.this, CustomerConfirmActivity.class);
-            // 把日期和時間也帶過去
-            intent.putExtra("selectedDate", date);
-            intent.putExtra("selectedTime", time);
-            intent.putExtra("userName", txtName.getText().toString());
-            intent.putExtra("userEmail", txtEmail.getText().toString());
-            intent.putExtra("userTel", txtTel.getText().toString());
-            intent.putExtra("noOfPerson",noOfPerson);
-            intent.putExtra("remark",editRemark.getText().toString());
-            intent.putExtra("eventType", eventType.toString().trim());
-            startActivity(intent);
+            AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+            List<Booking> bookings = db.bookingDao().getBookingsByDate(date);
 
+            boolean enough = BookingUtils.checkAvailability(bookings, date, time, noOfPerson);
+
+            if (enough) {
+                // ✅ 有位 → 跳到確認頁
+                Intent intent = new Intent(CustomerBookDetailActivity.this, CustomerConfirmActivity.class);
+                intent.putExtra("selectedDate", date);
+                intent.putExtra("selectedTime", time);
+                intent.putExtra("userName", txtName.getText().toString());
+                intent.putExtra("userEmail", txtEmail.getText().toString());
+                intent.putExtra("userTel", txtTel.getText().toString());
+                intent.putExtra("noOfPerson", noOfPerson);
+                intent.putExtra("remark", editRemark.getText().toString());
+                intent.putExtra("eventType", eventType.toString().trim());
+                startActivity(intent);
+            } else {
+                // ❌ 沒位 → 提示客人
+                Toast.makeText(this, "該時段已滿，請選其他時間", Toast.LENGTH_SHORT).show();
+            }
         });
 
         // Notice → 跳到 CustomerNoticeActivity

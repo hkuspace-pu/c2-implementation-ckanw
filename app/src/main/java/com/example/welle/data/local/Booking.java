@@ -2,6 +2,7 @@ package com.example.welle.data.local;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import com.example.welle.utils.BookingUtils;
 
 @Entity(tableName = "booking")
 public class Booking {
@@ -15,4 +16,11 @@ public class Booking {
     public int noOfPerson;
     public String remark;
     public String eventType;
+
+
+    // Helper method to get end time
+    public String getEndTime() {
+        return BookingUtils.calculateEndTime(time);
+    }
+
 }

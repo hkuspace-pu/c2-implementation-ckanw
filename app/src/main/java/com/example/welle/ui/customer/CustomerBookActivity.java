@@ -46,13 +46,13 @@ public class CustomerBookActivity extends AppCompatActivity {
         CalendarView calendarView = findViewById(R.id.calendarView);
         LinearLayout timeContainer = findViewById(R.id.timeContainer);
 
-        // Back button → return to main
+        // 返回主頁
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(CustomerBookActivity.this, CustomerMainActivity.class);
             startActivity(intent);
         });
 
-        // Notice button → go to notice page
+        // 通知頁
         btnNotice.setOnClickListener(v -> {
             Intent intent = new Intent(CustomerBookActivity.this, CustomerNoticeActivity.class);
             startActivity(intent);
@@ -104,7 +104,7 @@ public class CustomerBookActivity extends AppCompatActivity {
 
         while (calendar.before(end) || calendar.equals(end)) {
             TextView tv = new TextView(this);
-            tv.setText(sdf.format(calendar.getTime()));
+            tv.setText(sdf.format(calendar.getTime())); // ✅ 永遠是 HH:mm 格式
             tv.setTextSize(18);
             tv.setPadding(24, 16, 24, 16);
             tv.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
@@ -114,7 +114,7 @@ public class CustomerBookActivity extends AppCompatActivity {
                 if (!selectedDate.isEmpty()) {
                     Intent intent = new Intent(CustomerBookActivity.this, CustomerBookDetailActivity.class);
                     intent.putExtra("selectedDate", selectedDate);
-                    intent.putExtra("selectedTime", tv.getText().toString());
+                    intent.putExtra("selectedTime", tv.getText().toString()); // ✅ HH:mm 格式
                     startActivity(intent);
                 } else {
                     Toast.makeText(this, "Please select a date first", Toast.LENGTH_SHORT).show();
@@ -126,5 +126,3 @@ public class CustomerBookActivity extends AppCompatActivity {
         }
     }
 }
-
-

@@ -27,6 +27,14 @@ public interface BookingDao {
     void deleteBooking(Booking booking);
 
 
+    // Get all bookings for a specific date
+    @Query("SELECT * FROM booking WHERE date = :date")
+    List<Booking> getBookingsByDate(String date);
+
+    // Optional: Get all bookings for a specific date and time slot
+    @Query("SELECT * FROM booking WHERE date = :date AND time = :time")
+    List<Booking> getBookingsByDateAndTime(String date, String time);
+
 
 
 }

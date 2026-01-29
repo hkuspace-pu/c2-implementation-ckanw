@@ -61,4 +61,6 @@ public class StaffBookAdapter extends RecyclerView.Adapter<StaffBookAdapter.View
             textBooking4 = itemView.findViewById(R.id.textBooking4);
         }
     }
+
+    
 }
