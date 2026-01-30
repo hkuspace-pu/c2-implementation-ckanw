@@ -43,8 +43,8 @@ public class CustomerBookDetailActivity extends AppCompatActivity {
         String date = getIntent().getStringExtra("selectedDate");
         String time = getIntent().getStringExtra("selectedTime");
 
-        TextView txtDate = findViewById(R.id.editdate);
-        TextView txtTime = findViewById(R.id.edittime);
+        TextView txtDate = findViewById(R.id.txtDate);
+        TextView txtTime = findViewById(R.id.txtTime);
         TextView txtName = findViewById(R.id.editCustomerName);
         TextView txtEmail = findViewById(R.id.editCustomerEmail);
         TextView txtTel = findViewById(R.id.editCustomerContact);

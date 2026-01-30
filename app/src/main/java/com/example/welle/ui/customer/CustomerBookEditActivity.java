@@ -28,8 +28,8 @@ public class CustomerBookEditActivity extends AppCompatActivity {
         db = AppDatabase.getInstance(getApplicationContext());
         int bookingId = getIntent().getIntExtra("bookingId", -1);
 
-        editDate = findViewById(R.id.editdate);
-        editTime = findViewById(R.id.edittime);
+        editDate = findViewById(R.id.txtDate);
+        editTime = findViewById(R.id.txtTime);
         editName = findViewById(R.id.editCustomerName);
         editEmail = findViewById(R.id.editCustomerEmail);
         editTel = findViewById(R.id.editCustomerContact);

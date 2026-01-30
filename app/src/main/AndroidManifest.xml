@@ -92,15 +92,20 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.staff.StaffSelectTableActivity"
+            android:exported="false" />
+
+
+        <activity
             android:name=".StaffBookHeaderActivity"
             android:exported="false" />
 
         <activity
-            android:name=".StaffBookDetailActivity"
+            android:name=".ui.staff.StaffBookDetailActivity"
             android:exported="false" />
 
         <activity
-            android:name=".StaffMenuActivity"
+            android:name=".ui.staff.StaffMenuActivity"
             android:exported="false" />
 
         <activity

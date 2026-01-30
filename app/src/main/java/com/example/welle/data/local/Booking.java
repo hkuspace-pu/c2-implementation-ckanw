@@ -16,6 +16,7 @@ public class Booking {
     public int noOfPerson;
     public String remark;
     public String eventType;
+    public String tableName;
 
 
     // Helper method to get end time

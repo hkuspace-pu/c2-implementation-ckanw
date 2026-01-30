@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_welcome"
+    tools:context=".ui.staff.StaffSelectTableActivity">
+
+    <Button
+        android:id="@+id/btnback"
+        android:layout_width="71dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="12dp"
+        android:alpha="0"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageBack"
+        app:layout_constraintTop_toTopOf="@+id/imageBack" />
+
+    <ImageView
+        android:id="@+id/imageBack"
+        android:layout_width="79dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="63dp"
+        android:layout_height="57dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/burger_menu"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/btnstaffullmenu"
+        android:layout_width="61dp"
+        android:layout_height="60dp"
+        android:alpha="0"
+        android:text="btnstaffullmenu"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <Button
+        android:id="@+id/btnstaffnotice"
+        android:layout_width="83dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="4dp"
+        android:alpha="0"
+        android:text="btncustomernotice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.887"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="96dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        tools:layout_editor_absoluteY="-3dp" />
+
+
+
+
+    <!-- 日期 -->
+
+
+    <TextView
+        android:id="@+id/txtSelectedDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2025-12-04"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/imageBack"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- 時間 -->
+    <TextView
+        android:id="@+id/txtSelectedTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="19:00 - 20:00"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/imageBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- 檯位格子清單 -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerTables"
+        android:layout_width="419dp"
+        android:layout_height="418dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtSelectedDate"
+        app:layout_constraintVertical_bias="0.048"
+        tools:listitem="@layout/item_table" />
+
+    <Button
+        android:id="@+id/btnConfirmTable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="確定"
+        android:textColor="@android:color/white"
+        android:background="@drawable/shape_capsule2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="16dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

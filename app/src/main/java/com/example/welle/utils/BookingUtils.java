@@ -16,6 +16,9 @@ public class BookingUtils {
      * - Cap at 23:00.
      */
     public static String calculateEndTime(String startTime) {
+        if (startTime == null || startTime.trim().isEmpty()) {
+            return "Invalid time";
+        }
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
             Date start = sdf.parse(startTime.trim());
@@ -44,6 +47,9 @@ public class BookingUtils {
      * Check if booking overlaps with a slot.
      */
     public static boolean isTimeOverlap(String slotStart, String slotEnd, String bookingStart, String bookingEnd) {
+        if (slotStart == null || slotEnd == null || bookingStart == null || bookingEnd == null) {
+            return false;
+        }
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
             Date slotStartTime = sdf.parse(slotStart.trim());
@@ -86,11 +92,14 @@ public class BookingUtils {
      * ✅ 檢查是否有足夠檯位（客人端 & 員工端共用）
      */
     public static boolean checkAvailability(List<Booking> bookings, String newDate, String newTime, int noOfPerson) {
+        if (newTime == null || newTime.trim().isEmpty()) return false;
+
         String newEnd = calculateEndTime(newTime);
 
         int booked2 = 0, booked4 = 0;
 
         for (Booking b : bookings) {
+            if (b.time == null) continue; // 避免 NPE
             String bookingStart = b.time.trim();
             String bookingEnd = calculateEndTime(bookingStart);
 
@@ -139,5 +148,56 @@ public class BookingUtils {
     public static String getTodayDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d", Locale.getDefault());
         return sdf.format(new Date());
+    }
+
+    /**
+     * 檢查某檯位在指定日期/時間的狀態
+     * - available: 可用
+     * - booked: 已被訂
+     * - nearly_full: 快滿（剩餘檯位數少於某閾值）
+     */
+    public static String getTableStatus(List<Booking> bookings, String tableName, String date, String time) {
+        if (time == null || time.trim().isEmpty()) return "available";
+
+        String slotEnd = calculateEndTime(time);
+
+        // 檢查該檯位是否已被訂
+        for (Booking b : bookings) {
+            if (b.tableName != null && b.tableName.equals(tableName) && b.time != null) {
+                String bookingStart = b.time.trim();
+                String bookingEnd = calculateEndTime(bookingStart);
+
+                if (isTimeOverlap(time, slotEnd, bookingStart, bookingEnd)) {
+                    return "booked"; // 已被訂
+                }
+            }
+        }
+
+        // 檢查剩餘檯位數量，決定是否快滿
+        int booked2 = 0, booked4 = 0;
+        for (Booking b : bookings) {
+            if (b.time == null) continue;
+            String bookingStart = b.time.trim();
+            String bookingEnd = calculateEndTime(bookingStart);
+
+            if (isTimeOverlap(time, slotEnd, bookingStart, bookingEnd)) {
+                int[] split = calculateTableSplit(b.noOfPerson);
+                booked4 += split[0];
+                booked2 += split[1];
+            }
+        }
+
+        int available4 = TOTAL_4 - booked4;
+        int available2 = TOTAL_2 - booked2;
+
+        // 定義快滿邏輯：剩餘檯位少於 2 張就算快滿
+        if (tableName.startsWith("Table-2") && available2 <= 2) {
+            return "nearly_full";
+        }
+        if (tableName.startsWith("Table-4") && available4 <= 1) {
+            return "nearly_full";
+        }
+
+        return "available"; // 預設可用
     }
 }

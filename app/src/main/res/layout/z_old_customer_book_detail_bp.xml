@@ -57,7 +57,7 @@
         tools:layout_editor_absoluteY="-7dp" />
 
     <TextView
-        android:id="@+id/editdate"
+        android:id="@+id/txtDate"
         android:layout_width="179dp"
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
@@ -186,7 +186,7 @@
         android:text="Ken Wong"
         android:textColor="#A5A5A5"
         app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/edittime" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTime" />
 
     <EditText
         android:id="@+id/editRemark"
@@ -215,7 +215,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editCustomerContact" />
 
     <TextView
-        android:id="@+id/edittime"
+        android:id="@+id/txtTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -224,7 +224,7 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.409"
-        app:layout_constraintStart_toEndOf="@+id/editdate"
+        app:layout_constraintStart_toEndOf="@+id/txtDate"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
@@ -292,7 +292,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.147"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editdate" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
 
     <ImageView

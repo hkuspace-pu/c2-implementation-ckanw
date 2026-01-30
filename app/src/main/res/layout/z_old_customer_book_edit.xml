@@ -58,7 +58,7 @@
         tools:layout_editor_absoluteY="-8dp" />
 
     <TextView
-        android:id="@+id/editdate"
+        android:id="@+id/txtDate"
         android:layout_width="179dp"
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView48" />
 
     <TextView
-        android:id="@+id/edittime"
+        android:id="@+id/txtTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -80,7 +80,7 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.636"
-        app:layout_constraintStart_toEndOf="@+id/editdate"
+        app:layout_constraintStart_toEndOf="@+id/txtDate"
         app:layout_constraintTop_toBottomOf="@+id/textView48" />
 
     <EditText
@@ -106,7 +106,7 @@
         android:text="Ken Wong"
         android:textColor="#A5A5A5"
         app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/edittime" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTime" />
 
     <TextView
         android:id="@+id/textView11"
@@ -266,7 +266,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.147"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editdate" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
     <EditText
         android:id="@+id/editnoOfPerson"
