@@ -1,4 +1,4 @@
-package com.example.welle;
+package com.example.welle.ui.staff;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +15,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.welle.R;
+import com.example.welle.StaffMenuAddActivity;
+import com.example.welle.StaffMenuDetailActivity;
+import com.example.welle.StaffNoticeActivity;
 import com.example.welle.ui.MainActivity;
-import com.example.welle.ui.staff.StaffBookActivity;
-import com.example.welle.ui.staff.StaffMainActivity;
 
 public class StaffMenuActivity extends AppCompatActivity {
 
