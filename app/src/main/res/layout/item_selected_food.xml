@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:background="#333333">
+
+    <!-- 食物名稱 -->
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:text="Food Name"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"/>
+
+    <!-- 價格 -->
+    <TextView
+        android:id="@+id/txtPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$0.00"
+        android:textColor="#FFD700"
+        android:textSize="16sp"
+        android:layout_marginStart="16dp"/>
+
+    <!-- 減號按鈕 -->
+    <Button
+        android:id="@+id/btnMinus"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="-"
+        android:textSize="18sp"
+        android:background="@android:color/darker_gray"
+        android:textColor="#FFFFFF"
+        android:layout_marginStart="16dp"/>
+
+    <!-- 數量顯示 -->
+    <TextView
+        android:id="@+id/txtQuantity"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_marginStart="8dp"/>
+
+    <!-- 加號按鈕 -->
+    <Button
+        android:id="@+id/btnPlus"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="+"
+        android:textSize="18sp"
+        android:background="@android:color/darker_gray"
+        android:textColor="#FFFFFF"
+        android:layout_marginStart="8dp"/>
+</LinearLayout>

@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">WellE</string>
+
+    <string-array name="set_options">
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>A la carte</item>
+        <item>Desserts</item>
+        <item>Drinks</item>
+    </string-array>
+
+    <string-array name="type_options">
+        <item>SET</item>
+        <item>ALA_CARTE</item>
+    </string-array>
+
+
 </resources>
+

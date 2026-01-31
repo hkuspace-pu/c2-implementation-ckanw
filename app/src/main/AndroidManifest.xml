@@ -68,10 +68,10 @@
             android:name=".ui.customer.CustomerBookEditActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerBookCancelActivity"
+            android:name=".nonuse.CustomerBookCancelActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerBookCanceledActivity"
+            android:name=".nonuse.CustomerBookCanceledActivity"
             android:exported="false" />
         <activity
             android:name=".ui.customer.CustomerPrefActivity"
@@ -97,7 +97,7 @@
 
 
         <activity
-            android:name=".StaffBookHeaderActivity"
+            android:name=".nonuse.StaffBookHeaderActivity"
             android:exported="false" />
 
         <activity
@@ -109,11 +109,11 @@
             android:exported="false" />
 
         <activity
-            android:name=".StaffMenuAddActivity"
+            android:name=".ui.staff.StaffMenuAddActivity"
             android:exported="false" />
 
         <activity
-            android:name=".StaffMenuDetailActivity"
+            android:name=".ui.staff.StaffMenuDetailActivity"
             android:exported="false" />
 
         <activity

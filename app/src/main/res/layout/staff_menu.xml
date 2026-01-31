@@ -36,9 +36,9 @@
 
     <View
         android:id="@+id/view4"
-        android:layout_width="416dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="411dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="28dp"
         android:background="#4E4E4E"
         app:layout_constraintTop_toBottomOf="@+id/imageBack"
         tools:layout_editor_absoluteX="-3dp" />
@@ -48,132 +48,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="113dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:text="Lunch"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toStartOf="@+id/view4"
-        app:layout_constraintTop_toTopOf="@+id/view4" />
-
-
 
     <View
         android:id="@+id/view6"
-        android:layout_width="416dp"
-        android:layout_height="345dp"
+        android:layout_width="412dp"
+        android:layout_height="412dp"
         android:layout_marginTop="48dp"
         android:background="#4E4E4E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view4"
-        app:layout_constraintVertical_bias="0.053"
-        tools:layout_editor_absoluteX="6dp" />
-
-    <Button
-        android:id="@+id/btnstaffeditmenu"
-        android:layout_width="422dp"
-        android:layout_height="346dp"
-        android:alpha="0"
-        android:text="btnstaffeditmenu"
-        app:layout_constraintBottom_toBottomOf="@+id/view6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view6"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="113dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:text="Drink"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toEndOf="@+id/textView43"
-        app:layout_constraintTop_toTopOf="@+id/view4" />
-
-    <TextView
-        android:id="@+id/textView26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="36dp"
-        android:text="$XXX.XX"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/view6"
-        app:layout_constraintHorizontal_bias="0.244"
-        app:layout_constraintStart_toEndOf="@+id/textView21"
-        app:layout_constraintTop_toTopOf="@+id/view6" />
-
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:layout_marginTop="40dp"
-        android:text="$XXX.XX"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/view6"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView19"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
-
-    <TextView
-        android:id="@+id/textView41"
-        android:layout_width="113dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:text="Dinner"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/view4" />
-
-    <TextView
-        android:id="@+id/textView43"
-        android:layout_width="113dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:text="A la carte"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toEndOf="@+id/textView41"
-        app:layout_constraintTop_toTopOf="@+id/view4" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="32dp"
-        android:text="$XXX.XX"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.235"
-        app:layout_constraintStart_toEndOf="@+id/textView20"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
-
-
+        app:layout_constraintVertical_bias="0.017"
+        tools:layout_editor_absoluteX="-4dp" />
 
     <Button
         android:id="@+id/btnstaffnotice"
@@ -215,8 +100,7 @@
         android:text="btnstaffullmenu"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView56"
@@ -231,42 +115,6 @@
         app:layout_constraintTop_toBottomOf="@+id/btnback"
         app:layout_constraintVertical_bias="0.95" />
 
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="117dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="Set A"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view6" />
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="121dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="Set B"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="121dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="Set C"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/view6"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
     <Button
         android:id="@+id/btnstaffadd"
         android:layout_width="50dp"
@@ -276,6 +124,35 @@
         android:alpha="0"
         app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+    <!-- 類型清單 (橫向) -->
+
+    <!-- 食物項目清單 (直向) -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerFoodType"
+        android:layout_width="394dp"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="@+id/view4"
+        app:layout_constraintTop_toTopOf="@+id/view4"
+        app:layout_constraintVertical_bias="0.45" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerFoodItem"
+        android:layout_width="388dp"
+        android:layout_height="374dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view6"
+        app:layout_constraintEnd_toEndOf="@+id/view6"
+        app:layout_constraintStart_toStartOf="@+id/view6"
+        app:layout_constraintTop_toTopOf="@+id/view6" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
