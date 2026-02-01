@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="#2E2E2E">
+
+    <TextView
+        android:id="@+id/txtDateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2026-02-01 19:00"
+        android:textColor="@android:color/holo_orange_light"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name: Mrs. Lee"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email: lee@example.com"
+        android:textColor="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/txtRemark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remark: Company Party"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/txtEventType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Event: Party"
+        android:textColor="@android:color/holo_blue_light"/>
+</LinearLayout>

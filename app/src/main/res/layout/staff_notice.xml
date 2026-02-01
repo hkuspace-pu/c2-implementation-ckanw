@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:animationCache="true"
     android:background="@drawable/jpeg__5_"
-    tools:context=".StaffNoticeActivity">
+    tools:context=".ui.staff.StaffNoticeActivity">
 
     <Button
         android:id="@+id/btnback"

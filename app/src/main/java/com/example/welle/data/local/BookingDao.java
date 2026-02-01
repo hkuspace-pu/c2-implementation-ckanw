@@ -10,10 +10,13 @@ import java.util.List;
 
 @Dao
 public interface BookingDao {
+
     @Insert
     void insertBooking(Booking booking);
+
     @Query("SELECT * FROM booking")
     List<Booking> getAllBookings();
+
     @Query("SELECT * FROM booking WHERE email = :userEmail")
     List<Booking> getBookingsByEmail(String userEmail);
 
@@ -26,23 +29,23 @@ public interface BookingDao {
     @Delete
     void deleteBooking(Booking booking);
 
-
     // Get all bookings for a specific date
     @Query("SELECT * FROM booking WHERE date = :date")
     List<Booking> getBookingsByDate(String date);
-    // 🔹 新增：查詢某檯位的所有訂位
+
+    // Get all bookings for a specific table on a given date
     @Query("SELECT * FROM booking WHERE tableName = :tableName AND date = :date")
     List<Booking> getBookingsByTable(String tableName, String date);
 
-    // 更新某筆訂位的檯位
+    // Update the table name for a specific booking
     @Query("UPDATE booking SET tableName = :tableName WHERE id = :bookingId")
     void updateTableName(int bookingId, String tableName);
 
-
-    // Optional: Get all bookings for a specific date and time slot
+    // Get all bookings for a specific date and time slot
     @Query("SELECT * FROM booking WHERE date = :date AND time = :time")
     List<Booking> getBookingsByDateAndTime(String date, String time);
 
-
-
+    // Get all upcoming bookings (today or later)
+    @Query("SELECT * FROM booking WHERE date >= :today ORDER BY date ASC")
+    List<Booking> getUpcomingBookings(String today);
 }

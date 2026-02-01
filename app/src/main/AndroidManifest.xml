@@ -117,7 +117,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".StaffNoticeActivity"
+            android:name=".ui.staff.StaffNoticeActivity"
             android:exported="false" />
 
     </application>

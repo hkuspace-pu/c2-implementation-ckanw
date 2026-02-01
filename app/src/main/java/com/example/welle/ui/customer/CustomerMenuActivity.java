@@ -94,7 +94,7 @@ public class CustomerMenuActivity extends AppCompatActivity {
         recyclerFoodList.setAdapter(menuAdapter);
 
         // 食物類型橫列
-        List<String> typeList = Arrays.asList("Lunch", "Dinner", "A la carte", "Drinks");
+        List<String> typeList = Arrays.asList("Lunch", "Dinner", "A la carte", "Desserts", "Drinks");
         FoodTypeAdapter typeAdapter = new FoodTypeAdapter(typeList, this::loadMenuByCategory);
         recyclerFoodType.setAdapter(typeAdapter);
 

@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.welle.R;
-import com.example.welle.StaffNoticeActivity;
 import com.example.welle.data.local.AppDatabase;
 import com.example.welle.data.local.Menu;
 import com.example.welle.data.local.MenuDetail;

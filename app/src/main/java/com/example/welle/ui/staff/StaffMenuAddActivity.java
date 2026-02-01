@@ -3,7 +3,6 @@ package com.example.welle.ui.staff;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,7 +19,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.welle.R;
-import com.example.welle.StaffNoticeActivity;
 import com.example.welle.ui.MainActivity;
 import com.example.welle.data.local.AppDatabase;
 import com.example.welle.data.local.Menu;

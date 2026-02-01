@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.welle.R;
-import com.example.welle.StaffNoticeActivity;
 import com.example.welle.ui.MainActivity;
 import com.example.welle.ui.staff.adapter.TableAdapter;
 import com.example.welle.ui.staff.model.TableStatus;

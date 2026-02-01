@@ -16,7 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.welle.R;
-import com.example.welle.StaffNoticeActivity;
+import com.example.welle.ui.staff.StaffNoticeActivity;
 import com.example.welle.ui.MainActivity;
 import com.example.welle.ui.staff.StaffBookActivity;
 import com.example.welle.ui.staff.StaffBookDetailActivity;
