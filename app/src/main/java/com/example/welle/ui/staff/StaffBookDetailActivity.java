@@ -83,7 +83,7 @@ public class StaffBookDetailActivity extends AppCompatActivity {
         });
 
         // 返回按鈕
-        btnBack.setOnClickListener(v -> startActivity(new Intent(this, StaffBookHeaderActivity.class)));
+        btnBack.setOnClickListener(v -> startActivity(new Intent(this, StaffBookActivity.class)));
 
         // 通知按鈕
         btnNotice.setOnClickListener(v -> startActivity(new Intent(this, StaffNoticeActivity.class)));
