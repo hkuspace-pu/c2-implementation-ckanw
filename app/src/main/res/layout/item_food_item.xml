@@ -6,6 +6,7 @@
     android:padding="12dp"
     android:background="@drawable/bg_item_row">
 
+    <!-- 食物名稱 -->
     <TextView
         android:id="@+id/txtName"
         android:layout_width="0dp"
@@ -15,10 +16,44 @@
         android:textSize="16sp"
         android:textStyle="bold"/>
 
+    <!-- 價格 -->
     <TextView
         android:id="@+id/txtPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/gold"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:layout_marginEnd="12dp"/>
+
+    <!-- 減號按鈕 -->
+    <Button
+        android:id="@+id/btnMinus"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="-"
+        android:textSize="18sp"
+        android:background="@android:color/darker_gray"
+        android:textColor="@color/white"/>
+
+    <!-- 數量顯示 -->
+    <TextView
+        android:id="@+id/txtQuantity"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"/>
+
+    <!-- 加號按鈕 -->
+    <Button
+        android:id="@+id/btnPlus"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="+"
+        android:textSize="18sp"
+        android:background="@android:color/darker_gray"
+        android:textColor="@color/white"/>
 </LinearLayout>

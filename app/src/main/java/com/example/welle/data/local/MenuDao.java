@@ -22,9 +22,6 @@ public interface MenuDao {
     @Delete
     void deleteMenu(Menu menu);
 
-    // 套餐細項
-    @Query("SELECT * FROM menu_detail WHERE menuId = :menuId")
-    List<MenuDetail> getMenuDetails(int menuId);
 
     @Insert
     void insertMenuDetail(MenuDetail detail);

@@ -7,7 +7,17 @@
     android:layout_height="match_parent"
     android:animationCache="true"
     android:background="@drawable/jpeg__5_"
-    tools:context=".CustomerMenuActivity">
+    tools:context=".ui.customer.CustomerMenuActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerFoodItem"
+        android:layout_width="366dp"
+        android:layout_height="405dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view4"
+        tools:layout_editor_absoluteX="21dp" />
 
     <Button
         android:id="@+id/btnback"
@@ -41,62 +51,6 @@
         android:layout_height="wrap_content" />
 
 
-
-    <View
-        android:id="@+id/view6"
-        android:layout_width="416dp"
-        android:layout_height="345dp"
-        android:layout_marginTop="48dp"
-        android:background="#4E4E4E"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view4"
-        app:layout_constraintVertical_bias="0.121"
-        tools:layout_editor_absoluteX="-2dp" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="64dp"
-        android:text="$XXX.XX"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.111"
-        app:layout_constraintStart_toEndOf="@+id/textView20"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
-
-
-
-
-
-
-
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="242dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="12dp"
-        android:text="Set Detail XXX, XXX, XXX, XXX XXX, XXX"
-        android:textColor="#D5D5D5"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="242dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="8dp"
-        android:text="Set Detail XXX, XXX, XXX, XXX XXX, XXX"
-        android:textColor="#D5D5D5"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/view6"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
     <View
         android:id="@+id/view4"
         android:layout_width="416dp"
@@ -106,79 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageBack"
         tools:layout_editor_absoluteX="-2dp" />
 
-    <TextView
-        android:id="@+id/textView24"
-        android:layout_width="242dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="12dp"
-        android:text="Set Detail XXX, XXX, XXX, XXX XXX, XXX"
-        android:textColor="#D5D5D5"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:layout_marginTop="60dp"
-        android:text="$XXX.XX"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/view6"
-        app:layout_constraintHorizontal_bias="0.111"
-        app:layout_constraintStart_toEndOf="@+id/textView19"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
-
-    <TextView
-        android:id="@+id/textView26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="16dp"
-        android:text="$XXX.XX"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/view6"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toEndOf="@+id/textView21"
-        app:layout_constraintTop_toTopOf="@+id/view6" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="121dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="Set A"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view6" />
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="121dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="68dp"
-        android:text="Set B"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView21"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="121dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="68dp"
-        android:text="Set C"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView20"
-        tools:layout_editor_absoluteX="16dp" />
 
 
     <Button
@@ -224,56 +106,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="113dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="16dp"
-        android:text="Lunch"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:autoSizeTextType="uniform"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerFoodType"
+        android:layout_width="430dp"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:layout_margin="12dp"
+        android:paddingStart="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.601"
         app:layout_constraintStart_toStartOf="@+id/view4"
-        app:layout_constraintTop_toTopOf="@+id/view4" />
+        app:layout_constraintTop_toTopOf="@+id/view4"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="113dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:text="Dinner"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/view4" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="113dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:text="A la carte"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toTopOf="@+id/textView14" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="113dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="Drink"
-        android:textColor="#D5D5D5"
-        android:textSize="20sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toTopOf="@+id/textView14" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

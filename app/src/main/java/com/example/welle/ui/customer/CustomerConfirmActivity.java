@@ -14,7 +14,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.welle.CustomerMenuActivity;
 import com.example.welle.R;
 import com.example.welle.ui.MainActivity;
 import com.example.welle.data.local.AppDatabase;

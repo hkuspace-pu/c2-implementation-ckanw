@@ -42,10 +42,10 @@
             android:exported="false" />
 
         <activity
-            android:name=".CustomerMenuActivity"
+            android:name=".ui.customer.CustomerMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerSpecialActivity"
+            android:name=".ui.customer.CustomerSpecialActivity"
             android:exported="false" />
 
 

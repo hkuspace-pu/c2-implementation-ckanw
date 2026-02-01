@@ -10,7 +10,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class,Booking.class,Menu.class,MenuDetail.class}, version = 2, exportSchema = false)
+@Database(entities = {User.class,Booking.class,Menu.class,MenuDetail.class}, version = 3, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
@@ -42,6 +42,10 @@ public abstract class AppDatabase extends RoomDatabase {
                                     Executors.newSingleThreadExecutor().execute(() -> {
                                         AppDatabase database = getInstance(context);
                                         MenuDao dao = database.menuDao();
+                                        MenuDetailDao detailDao = database.menuDetailDao();
+
+
+
 
                                         // 假的 Dinner 套餐
                                         dao.insertMenu(new Menu("Dinner", "Set A", 199.99, "SET"));
@@ -54,6 +58,25 @@ public abstract class AppDatabase extends RoomDatabase {
                                         // 假的 Drinks
                                         dao.insertMenu(new Menu("Drinks", "Coffee", 39.99, "ALA_CARTE"));
                                         dao.insertMenu(new Menu("Drinks", "Tea", 29.99, "ALA_CARTE"));
+
+                                        // Set A
+
+                                        // 🔹 插入 Set A 的細項 (使用剛剛取得的 setAId)
+                                        MenuDetail detail1 = new MenuDetail();
+                                        detail1.menuId = 1;
+                                        detail1.foodName = "Steak";
+                                        detail1.quantity = 1;
+                                        detailDao.insert(detail1);
+
+                                        MenuDetail detail2 = new MenuDetail();
+                                        detail2.menuId = 1;
+                                        detail2.foodName = "Coffee";
+                                        detail2.quantity = 1;
+                                        detailDao.insert(detail2);
+
+
+
+
                                     });
                                 }
                             })

@@ -1,4 +1,4 @@
-package com.example.welle;
+package com.example.welle.ui.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,11 +15,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.welle.R;
 import com.example.welle.ui.MainActivity;
-import com.example.welle.ui.customer.CustomerBookActivity;
-import com.example.welle.ui.customer.CustomerMainActivity;
-import com.example.welle.ui.customer.CustomerPrefActivity;
-import com.example.welle.ui.customer.CustomerNoticeActivity;
 
 public class CustomerSpecialActivity extends AppCompatActivity {
 

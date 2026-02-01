@@ -25,7 +25,6 @@ import com.example.welle.ui.MainActivity;
 import com.example.welle.ui.staff.adapter.FoodItemAdapter;
 import com.example.welle.ui.staff.adapter.FoodTypeAdapter;
 import com.example.welle.ui.staff.adapter.SelectedFoodAdapter;
-import com.example.welle.data.local.MenuDetailDao;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,8 +40,6 @@ public class StaffMenuDetailActivity extends AppCompatActivity {
     private FoodItemAdapter optionsAdapter;
     private SelectedFoodAdapter selectedAdapter;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,22 +51,18 @@ public class StaffMenuDetailActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         // 接收前一頁傳來的資料
         String setName = getIntent().getStringExtra("setName");
         double setPrice = getIntent().getDoubleExtra("setPrice", 0.0);
         String setType = getIntent().getStringExtra("setType");
-
-        // 顯示在 EditText
-        EditText edtName = findViewById(R.id.editTextName);   // Set 名稱
-        EditText edtPrice = findViewById(R.id.editTextPrice); // 價格
-
-
-        edtName.setText(setName);
-        edtPrice.setText(String.valueOf(setPrice));
         int menuId = getIntent().getIntExtra("menuId", -1);
 
-
-
+        // 顯示在 EditText
+        EditText edtName = findViewById(R.id.editTextName);
+        EditText edtPrice = findViewById(R.id.editTextPrice);
+        edtName.setText(setName);
+        edtPrice.setText(String.valueOf(setPrice));
 
         // ====== 按鈕 ======
         Button btnBack = findViewById(R.id.btnback);
@@ -80,7 +73,11 @@ public class StaffMenuDetailActivity extends AppCompatActivity {
         Button btnNotice = findViewById(R.id.btnstaffnotice);
         Button popupButton = findViewById(R.id.btnstaffullmenu);
 
-        btnBack.setOnClickListener(v -> startActivity(new Intent(this, StaffMenuActivity.class)));
+        btnBack.setOnClickListener(v -> {
+            startActivity(new Intent(this, StaffMenuActivity.class));
+            finish();
+        });
+
         btnNotice.setOnClickListener(v -> startActivity(new Intent(this, StaffNoticeActivity.class)));
 
         btnConfirm.setOnClickListener(v -> {
@@ -91,25 +88,29 @@ public class StaffMenuDetailActivity extends AppCompatActivity {
 
             new Thread(() -> {
                 AppDatabase db = AppDatabase.getInstance(getApplicationContext());
-
                 for (Menu selected : selectedList) {
-                    MenuDetail detail = new MenuDetail();
-                    detail.menuId = menuId;           // 外鍵指向這個 Set
-                    detail.foodName = selected.name;  // 使用者選取的食物名稱
-                    detail.quantity = selected.quantity; // 使用者選擇的數量（需要在 UI 設定）
-
-                    db.menuDetailDao().insert(detail);
+                    if (selected.quantity > 0) {
+                        MenuDetail detail = new MenuDetail();
+                        detail.menuId = menuId;
+                        detail.foodName = selected.name;
+                        detail.quantity = selected.quantity;
+                        db.menuDetailDao().insert(detail);
+                    }
                 }
             }).start();
 
             Toast.makeText(this, "已新增 " + selectedList.size() + " 個細項到 Menu ID " + menuId, Toast.LENGTH_SHORT).show();
+
+            // 🔹 跳回前一頁
+            Intent intent = new Intent(this, StaffMenuActivity.class);
+            startActivity(intent);
+            finish();
         });
-
-
 
         btnCancel.setOnClickListener(v -> {
             Toast.makeText(this, "Record is No change!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, StaffMenuActivity.class));
+            finish();
         });
 
         btnClear.setOnClickListener(v -> {
@@ -119,7 +120,6 @@ public class StaffMenuDetailActivity extends AppCompatActivity {
         });
 
         btnReset.setOnClickListener(v -> {
-            // TODO: 從 DB 重新載入原始資料
             loadMenuByCategory("A la carte");
             selectedList.clear();
             selectedAdapter.notifyDataSetChanged();
@@ -149,10 +149,6 @@ public class StaffMenuDetailActivity extends AppCompatActivity {
             popup.show();
         });
 
-
-
-
-
         // ====== RecyclerView 顯示邏輯 ======
         recyclerFoodType = findViewById(R.id.recyclerFoodType);
         recyclerFoodOptions = findViewById(R.id.recyclerFoodOptions);
@@ -163,7 +159,6 @@ public class StaffMenuDetailActivity extends AppCompatActivity {
         recyclerSelectedFoods.setLayoutManager(new LinearLayoutManager(this));
 
         List<String> typeList = Arrays.asList("A la carte", "Desserts", "Drinks");
-
         FoodTypeAdapter typeAdapter = new FoodTypeAdapter(typeList, type -> loadMenuByCategory(type));
         recyclerFoodType.setAdapter(typeAdapter);
 
@@ -177,6 +172,32 @@ public class StaffMenuDetailActivity extends AppCompatActivity {
         });
         recyclerSelectedFoods.setAdapter(selectedAdapter);
 
+        // 🔹 檢查 DB 是否已有套餐，載入到購物車
+        if (menuId != -1) {
+            new Thread(() -> {
+                AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+                List<MenuDetail> details = db.menuDetailDao().getDetailsByMenuId(menuId);
+
+                List<Menu> restoredList = new ArrayList<>();
+                for (MenuDetail d : details) {
+                    Menu m = new Menu();
+                    m.id = d.menuId;
+                    m.name = d.foodName;
+                    m.quantity = d.quantity;
+                    restoredList.add(m);
+                }
+
+                runOnUiThread(() -> {
+                    selectedList.clear();
+                    selectedList.addAll(restoredList);
+                    selectedAdapter.notifyDataSetChanged();
+                    if (!restoredList.isEmpty()) {
+                        Toast.makeText(this, "已載入之前的套餐內容", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }).start();
+        }
+
         // 預設顯示 A la carte
         loadMenuByCategory("A la carte");
     }
@@ -188,7 +209,6 @@ public class StaffMenuDetailActivity extends AppCompatActivity {
 
             runOnUiThread(() -> {
                 optionsAdapter = new FoodItemAdapter(items, menu -> {
-                    // 點擊食物 → 加入已選清單
                     selectedList.add(menu);
                     selectedAdapter.notifyItemInserted(selectedList.size() - 1);
                     Toast.makeText(this, menu.name + " added", Toast.LENGTH_SHORT).show();

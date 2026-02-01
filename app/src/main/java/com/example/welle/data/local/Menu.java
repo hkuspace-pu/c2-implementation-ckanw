@@ -1,7 +1,10 @@
 package com.example.welle.data.local;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import java.util.List;
 
 @Entity(tableName = "menu")
 public class Menu {
@@ -27,4 +30,7 @@ public class Menu {
         this.type = type;
         this.quantity = 1; // 預設數量
     }
+
+    @Ignore
+    public List<MenuDetail> details;
 }
