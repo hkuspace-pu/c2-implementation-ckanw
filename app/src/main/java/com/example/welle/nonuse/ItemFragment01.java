@@ -1,4 +1,4 @@
-package com.example.welle;
+package com.example.welle.nonuse;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.welle.R;
 import com.example.welle.placeholder.PlaceholderContent;
 
 /**

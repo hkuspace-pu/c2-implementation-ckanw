@@ -1,5 +1,6 @@
 package com.example.welle.ui.staff;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuInflater;
@@ -18,13 +19,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.welle.R;
-import com.example.welle.StaffNoticeAdapter;
+import com.example.welle.ui.staff.adapter.StaffNoticeAdapter;
 import com.example.welle.data.local.AppDatabase;
 import com.example.welle.data.local.Booking;
 import com.example.welle.ui.MainActivity;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,6 +32,7 @@ public class StaffNoticeActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private StaffNoticeAdapter adapter;
+    private String selectedDate; // current selected date
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class StaffNoticeActivity extends AppCompatActivity {
 
         Button btnBack = findViewById(R.id.btnback);
         Button popupButton = findViewById(R.id.btnstaffullmenu);
+        Button btnPickDate = findViewById(R.id.btnPickDate);
 
         recyclerView = findViewById(R.id.StaffRecyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
@@ -55,8 +57,13 @@ public class StaffNoticeActivity extends AppCompatActivity {
         adapter = new StaffNoticeAdapter(this, null);
         recyclerView.setAdapter(adapter);
 
-        // Load booking data from DB
-        loadData();
+        // Default: load today's bookings
+        Calendar calendar = Calendar.getInstance();
+        selectedDate = String.format(Locale.getDefault(), "%04d-%d-%d",
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH) + 1,
+                calendar.get(Calendar.DAY_OF_MONTH));
+        loadData(selectedDate);
 
         // Back button → return to StaffMainActivity
         btnBack.setOnClickListener(v -> {
@@ -88,18 +95,28 @@ public class StaffNoticeActivity extends AppCompatActivity {
             });
             popup.show();
         });
+
+        // Date picker button → choose any date
+        btnPickDate.setOnClickListener(v -> {
+            Calendar cal = Calendar.getInstance();
+            DatePickerDialog dialog = new DatePickerDialog(
+                    StaffNoticeActivity.this,
+                    (view, year, month, dayOfMonth) -> {
+                        selectedDate = year + "-" + (month + 1) + "-" + dayOfMonth;
+                        loadData(selectedDate);
+                    },
+                    cal.get(Calendar.YEAR),
+                    cal.get(Calendar.MONTH),
+                    cal.get(Calendar.DAY_OF_MONTH)
+            );
+            dialog.show();
+        });
     }
 
-    private void loadData() {
+    private void loadData(String date) {
         new Thread(() -> {
             AppDatabase db = AppDatabase.getInstance(getApplicationContext());
-
-            // Get today's date string
-            String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                    .format(new Date());
-
-            // Query bookings from today onwards
-            List<Booking> bookings = db.bookingDao().getUpcomingBookings(today);
+            List<Booking> bookings = db.bookingDao().getBookingsByDate(date);
 
             runOnUiThread(() -> adapter.updateData(bookings));
         }).start();

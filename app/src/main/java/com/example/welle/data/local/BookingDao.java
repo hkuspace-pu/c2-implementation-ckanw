@@ -30,8 +30,9 @@ public interface BookingDao {
     void deleteBooking(Booking booking);
 
     // Get all bookings for a specific date
-    @Query("SELECT * FROM booking WHERE date = :date")
+    @Query("SELECT * FROM booking WHERE date LIKE :date || '%'")
     List<Booking> getBookingsByDate(String date);
+
 
     // Get all bookings for a specific table on a given date
     @Query("SELECT * FROM booking WHERE tableName = :tableName AND date = :date")
