@@ -38,32 +38,33 @@ public class StaffBookAdapter extends RecyclerView.Adapter<StaffBookAdapter.View
         BookingSlot slot = slots.get(position);
         holder.textTime.setText(slot.timeRange);
 
-        // 顯示 2 人檯剩餘數
+        // Display remaining 2-person tables
         int empty2 = slot.empty2;
-        holder.textEmpty2.setText(String.format("2人檯: %d", empty2));
-        if (empty2 == 12) { // 完全無人 → 原色
+        holder.textEmpty2.setText(String.format("2: %d", empty2));
+        if (empty2 == 12) { // Completely empty → original color
             holder.textEmpty2.setTextColor(Color.YELLOW);
-        } else if (empty2 <= 3) { // 剩 3 檯或以下 → 紅色
+        } else if (empty2 <= 3) { // 3 tables or fewer left → red
             holder.textEmpty2.setTextColor(Color.RED);
-        } else { // 有扣減但大於 3 → 白色
+        } else { // Reduced but more than 3 → white
             holder.textEmpty2.setTextColor(Color.WHITE);
         }
 
-        // 顯示 4 人檯剩餘數
+        // Display remaining 4-person tables
         int empty4 = slot.empty4;
-        holder.textEmpty4.setText(String.format("4人檯: %d", empty4));
-        if (empty4 == 6) { // 完全無人 → 原色
+        holder.textEmpty4.setText(String.format("4: %d", empty4));
+        if (empty4 == 6) { // Completely empty → original color
             holder.textEmpty4.setTextColor(Color.YELLOW);
-        } else if (empty4 <= 2) { // 剩 2 檯或以下 → 紅色
+        } else if (empty4 <= 2) { // 2 tables or fewer left → red
             holder.textEmpty4.setTextColor(Color.RED);
-        } else { // 有扣減但大於 2 → 白色
+        } else { // Reduced but more than 2 → white
             holder.textEmpty4.setTextColor(Color.WHITE);
         }
-        // 顯示已訂檯數（保持原色即可）
-        holder.textBooking2.setText(String.format("2人檯: %d", slot.booking2));
-        holder.textBooking4.setText(String.format("4人檯: %d", slot.booking4));
 
-        // 🔹 點擊事件 → 跳到 StaffBookingDetailActivity
+        // Display booked tables (keep original color)
+        holder.textBooking2.setText(String.format("2: %d", slot.booking2));
+        holder.textBooking4.setText(String.format("4: %d", slot.booking4));
+
+        // 🔹 Click event → Navigate to StaffBookDetailActivity
         holder.itemView.setOnClickListener(v -> {
             Context context = v.getContext();
             Intent intent = new Intent(context, StaffBookDetailActivity.class);
@@ -72,8 +73,6 @@ public class StaffBookAdapter extends RecyclerView.Adapter<StaffBookAdapter.View
             intent.putExtra("empty4", slot.empty4);
             context.startActivity(intent);
         });
-
-
     }
 
     @Override
